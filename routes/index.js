@@ -1,5 +1,4 @@
 var express = require('express');
-var fortune = require('../lib/mytest/fortune');
 var router = express.Router();
 
 /* GET home page. */

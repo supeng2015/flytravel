@@ -1,0 +1,17 @@
+<div><h2>魔兽世界历史研究之巨魔篇</h2><span>增加<span></div>
+<div>
+<ul class="nav navbar-nav">
+{{#each jvmolist}}
+  <li>
+    <h5>{{name}}巨魔<img src="{{picture}}"></h5>
+    <span>分布:{{distribution}}</span>
+    <span>所属:{{classification}}</span>
+  </li> 　
+{{/each}}
+</ul>
+<div>
+  <a>上一页</a>
+  {{page}}
+  <a href="list?page={{nextpage}}">下一页</a>
+</div>
+</div>

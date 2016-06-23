@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var kitten = require('../model/catdata');
+var kitten = require('../model/jvmo');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

@@ -10,7 +10,7 @@ kittySchema.methods.speak = function () {
 //模型化草图
 var Kitten = mongoose.model('Kitten', kittySchema);
 //实例化一条数据
-var silence = new Kitten({ name: 'Silence' })
+//var silence = new Kitten({ name: 'Silence' })
 // silence.save(function (err, silence) {
 //   if (err) return console.error(err);
 //   silence.speak();
