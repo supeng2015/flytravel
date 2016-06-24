@@ -1,14 +1,3 @@
-// var express = require('express');
-// var exphbs  = require('express-handlebars');
-// var app = express();
-// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-// app.set('view engine', 'handlebars');
-// app.get('/', function (req, res) {
-//   res.render('home');
-// });
-// module.exports = app;
-
-//app.listen(3000);
 express = require('express');
 var exphbs  = require('express-handlebars');
 var path = require('path');
@@ -24,16 +13,6 @@ var app = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-// app.get('/', function (req, res) {
-//   res.render('home');
-// });
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-// app.set('view engine', 'handlebars');
-//app.set('view engine', 'ejs');
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
