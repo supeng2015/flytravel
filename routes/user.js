@@ -3,15 +3,14 @@ var router = express.Router();
 var bcrypt = require('bcrypt-nodejs');
 var user = require('../model/user');
 
-//注册列表
+//注册
 router.get('/register',function(req,res){
   res.render('user/register');  
 })
-//注册
+//注册提交
 router.post('/registersubmit',function(req,res){
   user.find({ name: req.body.name }, function(err,obj){
-    
-    if(obj.length == 0){
+    if(obj.length==0){
       //var newuser = req.body;
       bcrypt.hash(req.body.password,null,null,function(err,hash){
         req.body.password = hash;    
@@ -19,7 +18,7 @@ router.post('/registersubmit',function(req,res){
           res.render('user/registerresult',{
             mes : '注册成功'
           })
-          console.log(obj)
+          console.log(obj);
         })
       });   	
     }else{
@@ -28,6 +27,30 @@ router.post('/registersubmit',function(req,res){
       })	
     }
   })
+});
+
+//登陆
+router.get('/login',function(req,res){
+  res.render('user/login');
 })
+//登陆提交
+router.post('/loginsubmit',function(req,res){
+  user.find({name:req.body.name},function(err,obj){
+    if(obj.length==0){
+      res.render('user/login',{
+        mes : '用户不存在'	
+      })
+    }else{
+      bcrypt.compare(req.body.password,obj[0].password,function(err,o){
+        if(o){
+          res.send('登陆成功');  
+        }else{
+          res.send('登陆失败');
+        }
+      });
+    }
+  })
+})
+
 
 module.exports = router;
