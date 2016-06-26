@@ -1,3 +1,4 @@
+//这是一个巨魔的数据表，主要练习增删改查
 var mongoose = require('./db.js');
 //建一个草图
 var jvmoSchema = mongoose.Schema({
