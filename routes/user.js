@@ -28,6 +28,10 @@ router.post('/registersubmit',function(req,res){
     }
   })
 });
+//上传头像
+router.get('/portrait',function(req,res){
+  res.render('user/portrait')  
+})
 
 //登陆
 router.get('/login',function(req,res){

@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+.portraitbox{
+  width: 200px;
+  height: 200px;
+  background: #eee; 
+  background:url('../images/noportrait.jpeg') no-repeat center center;
+  background-size:100% 100%;
+  margin-top: 20px;
+  border-radius: 50px;	
+}
