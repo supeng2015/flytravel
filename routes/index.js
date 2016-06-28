@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home');
+ 
+  //console.log(req);
+  res.render('home',{
+    ip : req.ip	
+  });
 });
 router.get('/myform', function(req, res, next) {
   res.render('myform');
