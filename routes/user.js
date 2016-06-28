@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt-nodejs');
 var user = require('../model/user');
+var multiparty = require('multiparty');
+var fs = require('fs');
 
 //注册
 router.get('/register',function(req,res){
@@ -28,11 +30,36 @@ router.post('/registersubmit',function(req,res){
     }
   })
 });
-//上传头像
+//上传头像表单
 router.get('/portrait',function(req,res){
-  res.render('user/portrait')  
-})
+  if(!req.session.uid){
+    res.redirect('/');
+  }else{
+    res.render('user/portrait')    
+  }
+   
+});
+//上传头像
+router.post('/portrait',function(req,res){
+   //生成multiparty对象，并配置上传目标路径
+  var form = new multiparty.Form({uploadDir: './public/files/'});
+  //上传完成后处理
+  form.parse(req, function(err, fields, files) {
+    var filesTmp = JSON.stringify(files,null,2);
+    if(err){
+      console.log('parse error: ' + err);
+    }else{
+      // console.log('parse files: ' + filesTmp);
+      var inputFile = files.upfile[0];
 
+      var uploadedPath = inputFile.path.slice(7);
+      console.log(uploadedPath);
+    }
+    res.render('user/portrait',{
+      path : uploadedPath
+    }) 
+  });
+});
 //登陆
 router.get('/login',function(req,res){
   res.render('user/login');
@@ -47,7 +74,10 @@ router.post('/loginsubmit',function(req,res){
     }else{
       bcrypt.compare(req.body.password,obj[0].password,function(err,o){
         if(o){
-          res.send('登陆成功');  
+          console.log(req.session)  
+          req.session.uid = obj[0]._id
+          //res.send('登陆成功');  
+          res.redirect('portrait');
         }else{
           res.send('登陆失败');
         }
@@ -55,6 +85,11 @@ router.post('/loginsubmit',function(req,res){
     }
   })
 })
-
+//退出登录
+router.get('/logout',function(req,res){
+  req.session.destroy(function(err) {
+    res.redirect('/');
+  });
+})
 
 module.exports = router;

@@ -1,8 +1,16 @@
 请上传你的笨蛋头像 呵呵！我呵呵你一脸啊！
-<div>
-  上传:
-  <input type="file">  
-</div>
+<form method="post" action="" enctype="multipart/form-data">
+<p>
+<input name="upfile" type="file">  
+</p>
+<p>
+<button type="submit">上传</button>
+</p>
+</form>
+{{path}}
 <div class="portraitbox">
-  
+  <img src="/{{path}}">
+</div>
+<div>
+<a href="logout">退出</a>
 </div>
