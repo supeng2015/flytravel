@@ -15,7 +15,8 @@ router.post('/registersubmit',function(req,res){
     if(obj.length==0){
       //var newuser = req.body;
       bcrypt.hash(req.body.password,null,null,function(err,hash){
-        req.body.password = hash;    
+        req.body.password = hash;
+        req.body.race = Math.floor(Math.random()*5); 
         var newuser = new user(req.body).save(function(err,obj){
           //console.log(obj);
           req.session.user = obj;
@@ -69,11 +70,11 @@ router.post('/portrait',function(req,res){
         }else{
           //修改数据库里用户的头像路径  
           user.findOne({name:res.locals.user.name},function(err,doc){
-            doc.portrait = dstPath;
+            doc.portrait = dstPath.split('/')[1] + "/" + dstPath.split('/')[2];
             doc.save(function(err,obj){
               name:res.locals.user.portrait = obj.portrait
               res.render('user/portrait',{
-                path : res.locals.user.portrait.split('/')[1] + "/" + res.locals.user.portrait.split('/')[2],
+                path : res.locals.user.portrait,
                 cat :  res.locals.user.name 
               }) 
             });
@@ -114,6 +115,32 @@ router.get('/logout',function(req,res){
   req.session.destroy(function(err) {
     res.redirect('/');
   });
+})
+//个人首页
+router.get('/myinfo',function(req,res){
+  console.log(res.locals.user.race);
+  switch(res.locals.user.race){
+    case 0 : 
+      res.locals.user.raceCn = '黑暗巨魔';
+      break;
+    case 1 :
+      res.locals.user.raceCn = '沙漠巨魔';
+      break;
+    case 2 :
+      res.locals.user.raceCn = '森林巨魔';
+      break;
+    case 3 : 
+      res.locals.user.raceCn = '丛林巨魔';
+      break;
+    case 4 : 
+      res.locals.user.raceCn = '冰霜巨魔';
+      break;
+    default :
+      res.locals.user.raceCn = '未知生物';   
+  };
+  res.render('user/myinfo',{
+    info : res.locals.user
+  })
 })
 
 module.exports = router;
