@@ -6,15 +6,8 @@ html,body{
 body{font:14px "Lucida Grande", Helvetica, Arial, sans-serif;color:#444;}
 a{color: #00B7FF;}
 p{margin:20px;}
-.portraitbox{
-  width: 200px;
-  height: 200px;
-  background: #eee; 
-  background:url('../images/noportrait.jpeg') no-repeat center center;
-  background-size:100% 100%;
+.mt{
   margin-top: 20px;
-  border-radius: 50px;
-  overflow: hidden;
 }
 .portraitbox img{width:100%;height:100%;}
 .index-box{
@@ -36,6 +29,11 @@ p{margin:20px;}
   line-height: 5rem;
   padding-left: 5rem;
   font-size: 2rem;
+}
+.index-header span{
+  font-size: 1rem;
+  float: right;
+  padding-right: .8rem;  
 }
 /*用户表单*/
 .user-form{
@@ -60,5 +58,31 @@ p{margin:20px;}
 }
 input::-webkit-input-placeholder {
 　color: #aaa !important;
+}
+.portrait-box{
+  margin: 0 auto;
+  width: 200px;
+  margin-top: 4rem;
+}
+.portrait-in-box{
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 200px;
+  background:url('../images/noportrait.jpg') no-repeat center center;
+  background-size:100% 100%;
+}
+.full-btn{
+  width: 100%;  
+}
+.upportrait{
+  opacity: 0;
+  position: absolute;
+  display:block;
+  height:100%;
+  width:100%;
+  top: 0;
+  left: 0;
 }
 

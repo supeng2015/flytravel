@@ -17,9 +17,12 @@ router.post('/registersubmit',function(req,res){
       bcrypt.hash(req.body.password,null,null,function(err,hash){
         req.body.password = hash;    
         var newuser = new user(req.body).save(function(err,obj){
-          res.render('user/registerresult',{
-            mes : '注册成功'
-          })
+          console.log(obj);
+          req.session.user = obj;
+          res.redirect('portrait');
+          // res.render('user/registerresult',{
+          //   mes : '注册成功'
+          // })
           console.log(obj);
         })
       });   	
@@ -32,12 +35,13 @@ router.post('/registersubmit',function(req,res){
 });
 //上传头像表单
 router.get('/portrait',function(req,res){
-  if(!req.session.uid){
+  if(!res.locals.user){
     res.redirect('/');
   }else{
-    res.render('user/portrait')    
+    res.render('user/portrait',{
+      cat :  res.locals.user.name 
+    })    
   }
-   
 });
 //上传头像
 router.post('/portrait',function(req,res){
@@ -49,14 +53,27 @@ router.post('/portrait',function(req,res){
     if(err){
       console.log('parse error: ' + err);
     }else{
-      // console.log('parse files: ' + filesTmp);
       var inputFile = files.upfile[0];
-
-      var uploadedPath = inputFile.path.slice(7);
-      console.log(uploadedPath);
-    }
+      var uploadedPath = inputFile.path;
+      var suzu = inputFile.path.split('/');
+      suzu[suzu.length-1] = res.locals.user.name + '.jpg';
+      var dstPath = suzu.join('/');
+      console.log(dstPath);
+      //console.log(uploadedPath);
+      //var dstPath = './public/files/' + inputFile.originalFilename;
+      //console.log(dstPath);
+      //重命名为真实文件名
+      fs.rename(uploadedPath, dstPath, function(err) {
+        if(err){
+          console.log('rename error: ' + err);
+        } else {
+          console.log('rename ok');
+       }
+      });
+    };
     res.render('user/portrait',{
-      path : uploadedPath
+      path : uploadedPath,
+      cat :  res.locals.user.name 
     }) 
   });
 });
