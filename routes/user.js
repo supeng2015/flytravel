@@ -17,13 +17,13 @@ router.post('/registersubmit',function(req,res){
       bcrypt.hash(req.body.password,null,null,function(err,hash){
         req.body.password = hash;    
         var newuser = new user(req.body).save(function(err,obj){
-          console.log(obj);
+          //console.log(obj);
           req.session.user = obj;
           res.redirect('portrait');
           // res.render('user/registerresult',{
           //   mes : '注册成功'
           // })
-          console.log(obj);
+          //console.log(obj);
         })
       });   	
     }else{
@@ -56,7 +56,7 @@ router.post('/portrait',function(req,res){
       var inputFile = files.upfile[0];
       var uploadedPath = inputFile.path;
       var suzu = inputFile.path.split('/');
-      suzu[suzu.length-1] = res.locals.user.name + '.jpg';
+      suzu[suzu.length-1] = res.locals.user._id + '.jpg';
       var dstPath = suzu.join('/');
       console.log(dstPath);
       //console.log(uploadedPath);
@@ -66,15 +66,22 @@ router.post('/portrait',function(req,res){
       fs.rename(uploadedPath, dstPath, function(err) {
         if(err){
           console.log('rename error: ' + err);
-        } else {
-          console.log('rename ok');
-       }
+        }else{
+          //修改数据库里用户的头像路径  
+          user.findOne({name:res.locals.user.name},function(err,doc){
+            doc.portrait = dstPath;
+            doc.save(function(err,obj){
+              name:res.locals.user.portrait = obj.portrait
+              res.render('user/portrait',{
+                path : res.locals.user.portrait.split('/')[1] + "/" + res.locals.user.portrait.split('/')[2],
+                cat :  res.locals.user.name 
+              }) 
+            });
+          })
+        }
       });
     };
-    res.render('user/portrait',{
-      path : uploadedPath,
-      cat :  res.locals.user.name 
-    }) 
+    
   });
 });
 //登陆
@@ -91,10 +98,10 @@ router.post('/loginsubmit',function(req,res){
     }else{
       bcrypt.compare(req.body.password,obj[0].password,function(err,o){
         if(o){
-          console.log(req.session)  
-          req.session.uid = obj[0]._id
-          //res.send('登陆成功');  
+          req.session.user = obj[0];
           res.redirect('portrait');
+          //res.send('登陆成功');  
+          //res.redirect('portrait');
         }else{
           res.send('登陆失败');
         }

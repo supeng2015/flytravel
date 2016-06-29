@@ -4,7 +4,7 @@ html,body{
   width: 100%;
 }
 body{font:14px "Lucida Grande", Helvetica, Arial, sans-serif;color:#444;}
-a{color: #00B7FF;}
+a{color: #fff;}
 p{margin:20px;}
 .mt{
   margin-top: 20px;
@@ -21,8 +21,7 @@ p{margin:20px;}
   text-align: center;
 }
 /*头部条*/
-.index-header{
-  margin-top: 5rem;     
+.index-header{    
   height: 5rem;
   background: #444;
   color: #fff;
@@ -64,6 +63,8 @@ input::-webkit-input-placeholder {
   width: 200px;
   margin-top: 4rem;
 }
+/*头像*/
+
 .portrait-in-box{
   width: 200px;
   height: 200px;
@@ -73,9 +74,6 @@ input::-webkit-input-placeholder {
   background:url('../images/noportrait.jpg') no-repeat center center;
   background-size:100% 100%;
 }
-.full-btn{
-  width: 100%;  
-}
 .upportrait{
   opacity: 0;
   position: absolute;
@@ -84,5 +82,31 @@ input::-webkit-input-placeholder {
   width:100%;
   top: 0;
   left: 0;
+}
+.portrait-in-box img{
+  width: 200px;
+  height: 200px; 
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.full-btn{
+  width: 100%;  
+}
+.intomain{
+  width: 10rem;
+  height: 10rem;
+  line-height: 10rem;
+  text-align: center;
+  background: #444;
+  position:fixed;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 2rem;
+  border-radius:10rem 0px 0px 0px; 
+}
+.intomaina a{ 
+  color: #fff;
 }
 

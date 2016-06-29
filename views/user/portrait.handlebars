@@ -6,16 +6,21 @@
   <div class="portrait-box">
     <form method="post" action="" enctype="multipart/form-data">
       <div class="portrait-in-box">
-        <img src="/{{path}}">
+        {{#if path}}
+          <img id="my-portrait" src="/{{path}}"> 
+        {{/if}}
+        
         <input class="upportrait" name="upfile" type="file">
 	  </div>
 	  <div>
-	    <button type="submit"  class="btn .mt full-btn btn-default">确定</button>
+	    <button type="submit"  class="btn mt full-btn btn-default">确定</button>
 	  </div>
-	  
-	</form>
+	 </form>
   </div>
 </section>
+<div class="intomain">
+  <a href="/jvmo/list" class="glyphicon glyphicon-book"></a>
+</div>
 
 
 
