@@ -47,6 +47,7 @@ router.get('/portrait',function(req,res){
 //上传头像
 router.post('/portrait',function(req,res){
    //生成multiparty对象，并配置上传目标路径
+
   var form = new multiparty.Form({uploadDir: './public/files/'});
   //上传完成后处理
   form.parse(req, function(err, fields, files) {
@@ -119,6 +120,21 @@ router.get('/logout',function(req,res){
 //个人首页
 router.get('/myinfo',function(req,res){
   console.log(res.locals.user.race);
+  switch(res.locals.user.power){
+    case 0 : 
+      res.locals.user.powerCn = "死猫";
+      break;
+    case 1 : 
+      res.locals.user.powerCn = "普通猫";
+      break;
+    case 2 : 
+      res.locals.user.powerCn = "氏族首领猫";
+      break;
+    case 3 : 
+      res.locals.user.powerCn = "超级猫";
+      break;      
+
+  }  
   switch(res.locals.user.race){
     case 0 : 
       res.locals.user.raceCn = '黑暗巨魔';

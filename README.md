@@ -12,8 +12,8 @@ express : 后端框架
 handlebars ： 后端模版引擎
 nigix : 存放静态文件
 mongoldb ：数据库
+Socket.IO ：消息推送
 
-路径
 cd documents/angular/ancient-  前端路径
 cd documents/express/flytravel   后端路径
 ./bin/www   启动

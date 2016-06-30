@@ -4,7 +4,9 @@ html,body{
   width: 100%;
 }
 body{font:14px "Lucida Grande", Helvetica, Arial, sans-serif;color:#444;}
-a{color: #fff;}
+ol,ul{list-style: none}
+a{color: #444;}
+header a{color:#fff}
 p{margin:20px;}
 .mt{
   margin-top: 20px;
@@ -106,7 +108,50 @@ input::-webkit-input-placeholder {
   font-size: 2rem;
   border-radius:10rem 0px 0px 0px; 
 }
-.intomaina a{ 
+.intomain a{ 
   color: #fff;
 }
-
+.my-info{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  padding: 0 2rem;
+}
+.my-info label{
+  width: 70px;  
+}
+.my-portrait-box{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5rem;
+  overflow: hidden; 
+  margin: 0 0 2rem;
+}
+.my-portrait-box img{
+  width: 100%;
+  height: 100%;  
+}
+.my-left{
+  float:left;
+  background:#f7f7f7;
+  padding: 2rem 1rem;
+  border-radius:0rem 2rem 2rem 0rem;
+  margin-top: 7rem;
+  box-shadow: 1px 1px 1px #aaa;
+}
+.my-right{
+  float: right;
+  background:#f7f7f7;
+  padding: 2rem 1rem;
+  border-radius:2rem 0rem 0rem 2rem;
+  margin-top: 15rem;
+  box-shadow: 1px 1px 1px #aaa;
+}
+.my-right li{
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc  
+}
+.my-right li a{
+  color: #e2a01b;  
+}
+.my-news{
+}

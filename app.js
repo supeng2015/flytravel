@@ -1,4 +1,4 @@
-express = require('express');
+var express = require('express');
 var exphbs  = require('express-handlebars');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,13 +6,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
+
 var users = require('./routes/users');
 var jvmo = require('./routes/jvmo');
 var user = require('./routes/user');
 var session = require('express-session');
 
+//var io = require('socket.io');
+//console.log(io);
+//io.on('connection', function(){ /* … */ });
 var app = express();
-
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(logger('dev'));
@@ -36,6 +39,7 @@ app.use(function(req,res,next){
   next();  //中间件传递
 });
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('./node_modules'));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/jvmo', jvmo);
@@ -71,11 +75,5 @@ app.use('/user', user);
 //     error: {}
 //   });
 // });
-
-
-
-
-
-
 
 module.exports = app;

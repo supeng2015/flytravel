@@ -1,14 +1,12 @@
 <header class="index-header">
   个人中心
   <span><a href="/">退出</a></span>
-  <span><a href="register"></a></span>
+  <span class="my-news"><i class="glyphicon glyphicon-bell"></i></span>
 </header>  
 <section>
-  <div>
-    <!--我的资料-->
+  <div class="my-left">
     <div class="my-info">
-      <label>用户名:</label>
-      <span><img src="/{{info.portrait}}"></span>
+      <div class="my-portrait-box"><img src="/{{info.portrait}}"></div>
     </div>
     <div class="my-info">
       <label>用户名:</label>
@@ -22,7 +20,28 @@
       <label>邮箱:</label>
       <span>{{info.email}}</span>
     </div>
-    <!--我的导航-->
-    <div></div>
+    <div class="my-info">
+      <label>权限:</label>
+      <span>{{info.powerCn}}</span>
+    </div>
+
   </div>
+  <ul class="my-right">
+    <li><a href="/jvmo/list">巨魔氏族</a></li>
+    <li><a href="/jvmo/list">人间四月天人</a></li>
+    <li><a href="/jvmo/list">偷窥狂</a></li>
+    <li><a href="/jvmo/list">技术分类</a></li>
+  </ul>
 </section>
+
+<script>
+  var socket = io();
+  $('form').submit(function(){
+    socket.emit('chat message', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+  socket.on('chat message', function(msg){
+    $('#messages').append($('<li>').text(msg));
+  });
+</script>
