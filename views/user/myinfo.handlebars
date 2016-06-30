@@ -24,7 +24,6 @@
       <label>权限:</label>
       <span>{{info.powerCn}}</span>
     </div>
-
   </div>
   <ul class="my-right">
     <li><a href="/jvmo/list">巨魔氏族</a></li>
@@ -32,7 +31,14 @@
     <li><a href="/jvmo/list">偷窥狂</a></li>
     <li><a href="/jvmo/list">技术分类</a></li>
   </ul>
+
 </section>
+{{#if powerCn=="超级猫"}}
+<div class="send-message"> 
+  群发消息             
+</div>
+{{/if}}
+
 
 <script>
   var socket = io();

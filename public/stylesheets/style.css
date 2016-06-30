@@ -151,7 +151,19 @@ input::-webkit-input-placeholder {
   border-bottom: 1px solid #ccc  
 }
 .my-right li a{
-  color: #e2a01b;  
+
 }
 .my-news{
+}
+.send-message{  
+  width: 8rem;
+  height: 8rem;
+  background:#f7f7f7;
+  position: fixed;
+  bottom: 10rem;
+  left : 10rem;
+  box-shadow: 1px 1px 1px #aaa;
+  border-radius:8rem;
+  text-align: center;
+  line-height: 8rem;
 }
