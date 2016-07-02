@@ -23,3 +23,16 @@ cd documents/mongodb/bin   数据库命令路径
 
  show dbs  显示数据库
 
+
+服务器上设置
+linux
+设置node环境变量
+因为每次重启SHELL 环境变量不会被保存
+
+sudo -i  根目录
+
+ssh 123.56.7.2  远程连接
+
+export PATH=~/myapp/node/bin:$PATH 环境变量
+
+
