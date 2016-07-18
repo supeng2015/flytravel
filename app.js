@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var jvmo = require('./routes/jvmo');
 var user = require('./routes/user');
+var sketch = require('./routes/sketch');
 var session = require('express-session');
 
 //var io = require('socket.io');
@@ -44,6 +45,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/jvmo', jvmo);
 app.use('/user', user);
+app.use('/sketch', sketch);
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
