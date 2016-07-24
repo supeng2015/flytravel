@@ -1,12 +1,19 @@
 var express = require('express');
 var router = express.Router();
+ var fs = require("fs") ;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  fs.readFile("../bb.txt","utf8",function (error,data){
+    if(error) throw error ;
+    var txt = data
+    res.render('home',{
+      txt : txt,	
+      ip : req.ip	
+    });
+  });	
   //console.log(req);
-  res.render('home',{
-    ip : req.ip	
-  });
+  
 });
 router.get('/myform', function(req, res, next) {
   res.render('myform');

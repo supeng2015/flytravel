@@ -1,12 +1,10 @@
-//这是一个巨魔的数据表，主要练习增删改查
+//这是我的素描作品
 var mongoose = require('./db.js');
 //建一个草图
-var jvmoSchema = mongoose.Schema({
-  name: String,
-  distribution : String,
-  picture : String,
-  classification : Number,
-  describe : String
+var sketchSchema = mongoose.Schema({
+  name : String,
+  updatetime : Date,
+  picture : String
 });
 //静态方法
 // jvmoSchema.methods.speak = function () {
@@ -14,13 +12,14 @@ var jvmoSchema = mongoose.Schema({
 //   console.log(greeting);
 // }
 //模型化草图
-var Jvmo = mongoose.model('Jvmo', jvmoSchema);
+var Sketch = mongoose.model('Sketch', sketchSchema);
 //实例化一条数据
-//var xueding = new Jvmo({
-//  name:'恶齿',
-//  distribution: '辛特兰',
-//  picture : '',
-//  classification : 2,
-//  describe : ''
-//})
-module.exports = Jvmo
+var onesketch = new Sketch({
+  name:'圆',
+  updatetime : new Date(),
+  picture : '/file/tt001.jpg'
+})
+// onesketch.save(function(err,obj){
+//   console.log(obj)
+// })
+module.exports = Sketch

@@ -16,7 +16,7 @@ router.get('/list',function(req, res, next){
         nextpage : parseInt(page) + 1
       });
     });
-  })	
+  });	
 });
 //增加表单
 router.get('/add',function(req,res){
