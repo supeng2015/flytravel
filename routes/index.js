@@ -4,16 +4,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  fs.readFile("../bb.txt","utf8",function (error,data){
-    if(error) throw error ;
-    var txt = data
-    res.render('home',{
-      txt : txt,	
-      ip : req.ip	
-    });
-  });	
+  res.render('home',{
+  //txt : txt,  
+    ip : req.ip 
+  });
+  // fs.readFile("../bb.txt","utf8",function (error,data){
+  //   if(error) throw error ;
+  //   var txt = data
+    
+  // });	
   //console.log(req);
-  
 });
 router.get('/myform', function(req, res, next) {
   res.render('myform');
