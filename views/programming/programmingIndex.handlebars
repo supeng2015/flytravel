@@ -14,23 +14,11 @@
       </div>
       <!--右边-->
       <div class="col-md-8">
-        <script id="p" type="text/x-handlebars">
-          <p>This is a partial.</p>
-          <p>{{errors}}</p>
-        </script>
-        <script id="t" type="text/x-handlebars">
-          <p>This is the template.</p>
-           {{#if errors}}
-            {{> error}}
-            {{/if}}    
-        </script>
-        <div></div><div></div>
+        <ul>
+          <li>asdasd</li>
+          <li>asdasd</li> 
+          <li>asdasd</li>  
+        </ul>
       </div>      
    </div>
 </div>
-<script> 
-Handlebars.registerPartial('error', $('#p').html());
-var t = Handlebars.compile($('#t').html());
-$('div:first').html(t({ errors: 'It done broke' }));
-$('div:last').html(t({ errors: null }));
-</script>
